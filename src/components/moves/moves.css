@@ -1,0 +1,31 @@
+.moves-box {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.moves-box-elem {
+    display: flex;
+    margin-bottom: 3px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moves-box-elem span {
+    padding: 5px;
+    text-transform: capitalize;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 600;
+    min-width: 70px;
+    text-align: center;
+}
+
+.moves-box-elem p {
+    height: auto;
+    text-transform: capitalize;
+    padding: 0px;
+    margin: 0px;
+}

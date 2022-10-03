@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Pokemon from '../src/components/pokemonBlock/pokemon.js'
+import Description from '../src/components/pokemonDesc/description'
+
+import './css/App.css'
 
 function App() {
+  const [pokemons, setPokemons] = useState()
+  const [urlpokemon, setUrlPokemon] = useState()
+  const [descriptionResolved, setDescriptionResolved] = useState(false)
+
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0')
+        .then((response) => response.json())
+        .then((data) => setPokemons(data))
+  }, []);
+
+  const showPokemon = (selected) => {
+    setUrlPokemon(selected)
+  }
+
+  const isDescription = () => {
+    setDescriptionResolved(true)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="main-desc">
+        <Description data={urlpokemon} func={isDescription} />
+      </div>
+      <div className="main-list">
+        {pokemons && <Pokemon data={pokemons} func={showPokemon} />}
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
